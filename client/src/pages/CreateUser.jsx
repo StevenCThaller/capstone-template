@@ -23,6 +23,7 @@ function CreateUser() {
       const response = await axios.post('http://localhost:3001/api', requestData)
       console.log("Successfully signed up:", user);
       console.log("Backend response:", response.data);
+      navigate('/signin')
       // Add your navigation or state update logic here after successful signup
     } catch (error) {
       console.error("Error signing up:", error);
