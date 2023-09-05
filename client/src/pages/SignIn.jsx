@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../server/src/config/fireBase.config';
 import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function SignIn() {
 	const [email, setEmail] = useState('');
@@ -41,6 +42,7 @@ function SignIn() {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<button onClick={handleSignin}>Sign In</button>
+      <p><Link to={'/signup'}>Dont have an account? Click here to sign up</Link></p>
 		</div>
 	);
 }
