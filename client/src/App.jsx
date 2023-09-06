@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserContext } from './context/userContext';
 import { Navigate } from 'react-router-dom';
+import MovieDetail from './pages/MovieDetail';
 
 function App() {
 	const { user } = useContext(UserContext);
@@ -27,6 +28,14 @@ function App() {
 						element={
 							<ProtectedRoute user={user}>
 								<HomePage />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/movieDetail/:id'
+						element={
+							<ProtectedRoute user={user}>
+								<MovieDetail />
 							</ProtectedRoute>
 						}
 					/>
