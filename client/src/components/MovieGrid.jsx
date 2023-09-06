@@ -9,6 +9,7 @@ const MovieGrid = ({ movies }) => {
         <MovieCard
           key={index}
           title={movie.title}
+          id={movie.id}
           year={movie.release_date.substring(0, 4)}
           image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         />
