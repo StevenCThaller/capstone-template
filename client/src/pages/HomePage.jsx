@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
+import MovieGrid from '../components/MovieGrid'
+import NavBar from '../components/Navbar';
+import SearchBar from '../components/SearchBar';
 import axios from 'axios';
+import './HomePage.css';
 
 const HomePage = () => {
 	const { setUser, user } = useContext(UserContext);
@@ -20,14 +24,22 @@ const HomePage = () => {
 		  });
 	  }, []);
 	  console.log(movies)
-	return (
-		<>
-			<div>
-				<h1>HomePage</h1>
-				<h1>User: {user}</h1>
-			</div>
-		</>
-	);
+
+	  const handleSearch = (query) => {
+		console.log('Searching for:', query);
+	  };
+
+	  return (
+		<div>
+		  <h1>Terror Time Machine</h1>
+		  <h2>User: {user}</h2>
+		  <NavBar/>
+		  <SearchBar onSearch={handleSearch} />
+		  <div className="movie-list">
+			<MovieGrid movies={movies} />
+		  </div>
+		</div>
+	  );
 };
 
 export default HomePage;
