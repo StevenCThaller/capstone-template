@@ -19,10 +19,14 @@ const userSchema = new mongoose.Schema({
                 type: Number,
                 required: true,
             },
-            Reply:{
-                type: String,
-                required: true,
-            }
+            commentText: {
+                type: String
+            },
+            Replies:[
+                {
+                    type:String
+                }
+            ]
         }
     ]
 })
