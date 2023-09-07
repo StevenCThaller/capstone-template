@@ -11,20 +11,26 @@ const HomePage = () => {
 	const { setUser, user } = useContext(UserContext);
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [username, setUsername] = useState()
 	useEffect(() => {
-		// Make the HTTP request using Axios
 		axios.get('http://localhost:3001/api/movies')
 		  .then((response) => {
-			// Access the data from the response
 			setMovies(response.data);
-			// You can now use response.data for further processing
 		  })
 		  .catch((error) => {
-			// Handle any errors that occur during the request
 			console.error('Error fetching data:', error);
 		  });
 	  }, []);
-	  console.log(movies)
+
+	  useEffect(()=>{
+		axios.get(`http://localhost:3001/api/user/${user}`)
+		  .then((response) => {
+			setUsername(response.data.username);
+		  })
+		  .catch((error) => {
+			console.error('Error fetching data:', error);
+		  });
+	  },[])
 
 	  const handleSearch = (query) => {
 		console.log('Searching for:', query);
@@ -43,7 +49,7 @@ const HomePage = () => {
 	  return (
 		<div>
 		  <h1>Terror Time Machine</h1>
-		  <h2>User: {user}</h2>
+		  <h2>Hello {username}!</h2>
 		  <NavBar/>
 		  <SearchBar onSearch={handleSearch} />
 		  <div className="movie-list">
