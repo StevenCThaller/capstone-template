@@ -3,6 +3,7 @@ import MovieCard from './MovieCard';
 import './MovieGrid.css';
 
 const MovieGrid = ({ movies }) => {
+    
   return (
     <div className="movie-grid">
       {movies.map((movie, index) => (

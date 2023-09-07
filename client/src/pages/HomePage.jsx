@@ -10,6 +10,7 @@ import './HomePage.css';
 const HomePage = () => {
 	const { setUser, user } = useContext(UserContext);
 	const [movies, setMovies] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
 	useEffect(() => {
 		// Make the HTTP request using Axios
 		axios.get('http://localhost:3001/api/movies')
@@ -29,6 +30,16 @@ const HomePage = () => {
 		console.log('Searching for:', query);
 	  };
 
+	  const handleNextPage = () => {
+		setCurrentPage(currentPage + 1);
+	  };
+	  
+	  const handlePrevPage = () => {
+		if (currentPage > 1) {
+		  setCurrentPage(currentPage - 1);
+		}
+	  };
+
 	  return (
 		<div>
 		  <h1>Terror Time Machine</h1>
@@ -38,6 +49,8 @@ const HomePage = () => {
 		  <div className="movie-list">
 			<MovieGrid movies={movies} />
 		  </div>
+		  <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous Page</button>
+		  <button onClick={handleNextPage}>Next Page</button>	
 		</div>
 	  );
 };
