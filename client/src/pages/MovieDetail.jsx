@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import MovieDetailCard from '../components/MovieDetailCard'
+import './MovieDetail.css'
 
 const MovieDetail = () => {
     const {id} = useParams()
@@ -20,9 +22,23 @@ const MovieDetail = () => {
     }, [id])
     console.log(movie)
   return (
-    <div>{movie && 
-        <h1>{movie.title}</h1>
-        }</div>
+    <div className='movie-container'>
+      {movie && (
+        <>
+          <h1>{movie.title}</h1>
+          <MovieDetailCard
+            title={movie.title}
+            year={movie.release_date}
+            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            id={movie.id}
+            overview={movie.overview}
+            runtime={movie.runtime}
+            genres={movie.genres}
+            tagline={movie.tagline}
+          />
+        </>
+      )}
+    </div>
   )
 }
 
