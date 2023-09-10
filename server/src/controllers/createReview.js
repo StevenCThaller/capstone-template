@@ -5,7 +5,7 @@ export const createReview = async (req, res, next) => {
     console.log("hit");
     try {
         const { uid, movieID, Rating, commentText } = req.body;
-        const newReview = new Review({ movieID, Rating, commentText });
+        const newReview = new Review({ uid, movieID, Rating, commentText });
     
         await newReview.save();
 

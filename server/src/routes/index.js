@@ -5,6 +5,8 @@ import { oneMovie } from "../controllers/oneMovie";
 import { findUser } from "../controllers/getUser";
 import { createReview } from "../controllers/createReview";
 import { getUserReviews } from "../controllers/getUserReviews";
+import { getMovieReviews } from "../controllers/getMovieReviews";
+import { createReply } from "../controllers/createReply";
 
 const router = Router();
 
@@ -19,5 +21,9 @@ router.route('/user/:uid').get(findUser)
 router.route('/review').post(createReview)
 
 router.route('/getReviews/:uid').get(getUserReviews)
+
+router.route('/movieReviews/:movieID').get(getMovieReviews)
+
+router.route('/reply').post(createReply)
 
 export default router;
