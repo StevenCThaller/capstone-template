@@ -5,6 +5,10 @@ const reviewSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	username:{
+		type: String,
+		required: true
+	},
 	movieID: {
 		type: String,
 		required: true,
@@ -20,11 +24,15 @@ const reviewSchema = new mongoose.Schema({
 		{
 			uid: {
 				type: String,
-				required: true, // Assuming you want the UID to be required for each reply
+				required: true
+			},
+			username:{
+				type: String,
+				required: true
 			},
 			text: {
 				type: String,
-				required: true, // Assuming you want the reply text to be required
+				required: true
 			},
 		}
 	],

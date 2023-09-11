@@ -4,12 +4,24 @@ import { auth } from '../../../server/src/config/fireBase.config';
 import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function SignIn() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const { setUser, user } = useContext(UserContext);
+	const { setUser, user, setUsername } = useContext(UserContext);
 	const navigate = useNavigate();
+
+	const setUsersName = (userID) =>{
+			axios.get(`http://localhost:3001/api/user/${userID}`)
+			  .then((response) => {
+				setUsername(response.data.username);
+			  })
+			  .catch((error) => {
+				console.error('Error fetching data:', error);
+			  });
+	}
+
 	const handleSignin = async () => {
 		try {
 			const userCredential = await signInWithEmailAndPassword(
@@ -19,6 +31,7 @@ function SignIn() {
 			);
 			const user = userCredential.user;
 			setUser(user.uid);
+			setUsersName(user.uid)
 			console.log('Successfully signed in:', user);
 			navigate('/');
 		} catch (error) {

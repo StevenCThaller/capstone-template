@@ -8,10 +8,10 @@ import axios from 'axios';
 import './HomePage.css';
 
 const HomePage = () => {
-	const { setUser, user } = useContext(UserContext);
+	const { setUser, user, username, setUsername } = useContext(UserContext);
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [username, setUsername] = useState()
+	
 	useEffect(() => {
 		axios.get('http://localhost:3001/api/movies')
 		  .then((response) => {
@@ -21,16 +21,6 @@ const HomePage = () => {
 			console.error('Error fetching data:', error);
 		  });
 	  }, []);
-
-	  useEffect(()=>{
-		axios.get(`http://localhost:3001/api/user/${user}`)
-		  .then((response) => {
-			setUsername(response.data.username);
-		  })
-		  .catch((error) => {
-			console.error('Error fetching data:', error);
-		  });
-	  },[])
 
 	  const handleSearch = (query) => {
 		console.log('Searching for:', query);

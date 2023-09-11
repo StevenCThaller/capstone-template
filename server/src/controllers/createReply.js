@@ -2,10 +2,10 @@ import Review from "../models/reviewSchema";
 
 export const createReply = async (req, res, next) => {
     try {
-        const { uid, reviewID, replyText } = req.body;
+        const { uid, username, reviewID, replyText } = req.body;
 
      
-        if (!uid || !reviewID || !replyText) {
+        if (!uid || !username || !reviewID || !replyText) {
             return res.status(400).json({ error: 'Invalid input data' });
         }
 
@@ -17,7 +17,7 @@ export const createReply = async (req, res, next) => {
         }
 
     
-        review.Replies.push({ uid, text: replyText });
+        review.Replies.push({ uid, username, text: replyText });
 
       
         await review.save();

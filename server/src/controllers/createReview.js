@@ -4,8 +4,8 @@ import Review from "../models/reviewSchema"
 export const createReview = async (req, res, next) => {
     console.log("hit");
     try {
-        const { uid, movieID, Rating, commentText } = req.body;
-        const newReview = new Review({ uid, movieID, Rating, commentText });
+        const { uid, username, movieID, Rating, commentText } = req.body;
+        const newReview = new Review({ uid, username, movieID, Rating, commentText });
     
         await newReview.save();
 
