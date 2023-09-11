@@ -23,7 +23,9 @@ function App() {
 				<Routes>
 					<Route path='/signup' element={<CreateUser />} />
 					<Route path='/signin' element={<SignIn />} />
-					<Route
+					<Route path='/' element={<HomePage />}/>
+					<Route path='/movieDetail/:id' element={<MovieDetail/>}/>
+					{/* <Route
 						path='/'
 						element={
 							<ProtectedRoute user={user}>
@@ -38,7 +40,7 @@ function App() {
 								<MovieDetail />
 							</ProtectedRoute>
 						}
-					/>
+					/> */}
 				</Routes>
 			</>
 		</Router>
