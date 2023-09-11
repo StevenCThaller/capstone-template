@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import MovieDetailCard from '../components/MovieDetailCard'
+import LogoHeader from '../components/Header'
+import NavBar from '../components/Navbar';
 import './MovieDetail.css'
 
 const MovieDetail = () => {
@@ -22,9 +24,11 @@ const MovieDetail = () => {
     }, [id])
     console.log(movie)
   return (
-    <div className='movie-container'>
+    <div>
+      <LogoHeader />
+      <NavBar />
       {movie && (
-        <>
+        <div className="movie-container">
           <h1>{movie.title}</h1>
           <MovieDetailCard
             title={movie.title}
@@ -36,10 +40,10 @@ const MovieDetail = () => {
             genres={movie.genres}
             tagline={movie.tagline}
           />
-        </>
+        </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default MovieDetail
