@@ -12,6 +12,8 @@ const HomePage = () => {
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filteredMovies, setFilteredMovies] = useState([]);
+	const [pagnatedMovies, setPagnatedMovies] = useState([])
+	console.log("pagnated movies",pagnatedMovies)
 	useEffect(() => {
 		axios.get('http://localhost:3001/api/movies')
 		  .then((response) => {
@@ -21,6 +23,16 @@ const HomePage = () => {
 			console.error('Error fetching data:', error);
 		  });
 	  }, []);
+
+	useEffect(()=>{
+		axios.get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
+		  .then((response) => {
+			setPagnatedMovies(response.data);
+		  })
+		  .catch((error) => {
+			console.error('Error fetching data:', error);
+		  });
+	}, [currentPage])
 
 	  const handleSearch = (query) => {
 		console.log('Searching for:', query);
