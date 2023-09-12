@@ -11,7 +11,8 @@ const HomePage = () => {
 	const { setUser, user, username, setUsername } = useContext(UserContext);
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	
+	const [username, setUsername] = useState()
+	const [filteredMovies, setFilteredMovies] = useState([]);
 	useEffect(() => {
 		axios.get('http://localhost:3001/api/movies')
 		  .then((response) => {
@@ -41,9 +42,9 @@ const HomePage = () => {
 		  <h1>Terror Time Machine</h1>
 		  <h2>Hello {username}!</h2>
 		  <NavBar/>
-		  <SearchBar onSearch={handleSearch} />
+		  <SearchBar onSearch={handleSearch} movies={movies} setFilteredMovies={setFilteredMovies} />
 		  <div className="movie-list">
-			<MovieGrid movies={movies} />
+			<MovieGrid movies={filteredMovies.length > 0 ? filteredMovies : movies} />
 		  </div>
 		  <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous Page</button>
 		  <button onClick={handleNextPage}>Next Page</button>	

@@ -7,7 +7,7 @@ const MovieCard = ({ title, year, image, id }) => {
   return (
     <div className="movie-card">
       <h2 className="movie-title">{title}</h2>
-      <img src={image} alt={title} />
+      <img src={image} alt={title} onClick={()=>navigate(`/movieDetail/${id}`)}/>
       <div className="movie-info">
         <p>Year: {year}</p>
       </div>
