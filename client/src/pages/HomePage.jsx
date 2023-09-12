@@ -11,7 +11,6 @@ const HomePage = () => {
 	const { setUser, user, username, setUsername } = useContext(UserContext);
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [username, setUsername] = useState()
 	const [filteredMovies, setFilteredMovies] = useState([]);
 	useEffect(() => {
 		axios.get('http://localhost:3001/api/movies')
