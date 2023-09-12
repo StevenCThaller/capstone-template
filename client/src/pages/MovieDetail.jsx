@@ -5,6 +5,7 @@ import MovieDetailCard from '../components/MovieDetailCard'
 import LogoHeader from '../components/Header'
 import NavBar from '../components/Navbar';
 import './MovieDetail.css'
+import Reviews from '../components/Reviews'
 
 const MovieDetail = () => {
     const {id} = useParams()
@@ -40,6 +41,7 @@ const MovieDetail = () => {
             genres={movie.genres}
             tagline={movie.tagline}
           />
+          <Reviews />
         </div>
       )}
     </div>

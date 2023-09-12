@@ -6,6 +6,7 @@ import NavBar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import axios from 'axios';
 import './HomePage.css';
+import Reviews from '../components/Reviews';
 
 const HomePage = () => {
 	const { setUser, user, username, setUsername } = useContext(UserContext);
