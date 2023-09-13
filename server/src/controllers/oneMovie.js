@@ -1,5 +1,4 @@
 export const oneMovie = async (req, res, next) => {
-    console.log("hit");
     const { id } = req.params;
     try {
         const fetch = require('node-fetch');

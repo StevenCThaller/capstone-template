@@ -1,5 +1,5 @@
 export const moviesByPage = async (req, res, next) => {
-    console.log('hit');
+   
     const { page } = req.params;
     if (isNaN(page)) {
       return res.status(400).json({ error: 'Invalid page number' });

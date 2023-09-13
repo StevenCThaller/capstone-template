@@ -1,7 +1,7 @@
 import Review from "../models/reviewSchema"
 
 export const getMovieReviews = async (req, res, next) => {
-    console.log('hit');
+   
     try {
         const { movieID } = req.params;
         const movie = await Review.find({ movieID : movieID });

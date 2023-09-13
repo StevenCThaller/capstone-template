@@ -1,7 +1,7 @@
 import User from "../models/userSchema";
 
 export const createUser = async (req, res, next) => {
-    console.log("hit")
+    
     try {
         const { uid, username } = req.body;
         const newUser = new User({
