@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../server/src/config/fireBase.config';
-import { UserContext } from '../context/userContext';
+import { auth } from '../../../../server/src/config/fireBase.config';
+import { UserContext } from '../../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
