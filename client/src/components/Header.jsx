@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import TTMLogo from './TTMHeader.png'
 
-function Header() {
-  return <div>Header</div>;
-}
+const LogoComponent = () => {
+  return <img src={TTMLogo} alt="Terror Time Machine Logo" />;
+};
 
-export default Header;
+export default LogoComponent;
