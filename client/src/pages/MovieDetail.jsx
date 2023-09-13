@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import MovieDetailCard from '../components/MovieDetailCard'
 import LogoHeader from '../components/Header'
-import NavBar from '../components/Navbar';
+import NavBar from '../components/NavBar';
 import './MovieDetail.css'
 import Reviews from '../components/Reviews'
 
@@ -41,9 +41,9 @@ const MovieDetail = () => {
             genres={movie.genres}
             tagline={movie.tagline}
           />
-          <Reviews />
         </div>
       )}
+    <Reviews />
     </div>
   );
 };
