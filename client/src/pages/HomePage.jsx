@@ -13,8 +13,8 @@ const HomePage = () => {
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filteredMovies, setFilteredMovies] = useState(null);
-	const [pagnatedMovies, setPagnatedMovies] = useState([]);
-	console.log('pagnated movies', pagnatedMovies);
+	const [paginatedMovies, setPaginatedMovies] = useState([]);
+	console.log('paginated movies', paginatedMovies);
 	useEffect(() => {
 		axios
 			.get('http://localhost:3001/api/movies')
@@ -30,7 +30,7 @@ const HomePage = () => {
 		axios
 			.get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
 			.then((response) => {
-				setPagnatedMovies(response.data);
+				setPaginatedMovies(response.data);
 			})
 			.catch((error) => {
 				console.error('Error fetching data:', error);
@@ -77,7 +77,7 @@ const HomePage = () => {
 			</div>
 			<div className='movie-list'>
 				<MovieGrid
-					movies={filteredMovies !== null ? filteredMovies : pagnatedMovies}
+					movies={filteredMovies !== null ? filteredMovies : paginatedMovies}
 				/>
 			</div>
 			{filteredMovies === null && (
