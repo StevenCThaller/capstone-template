@@ -58,11 +58,14 @@ const HomePage = () => {
 			<h1>Terror Time Machine</h1>
 			<h2>Hello {username}!</h2>
 			<NavBar />
-			<SearchBar
-				onSearch={handleSearch}
-				movies={movies}
-				setFilteredMovies={setFilteredMovies}
-				/>
+			<div className='search-bar'>
+				<SearchBar
+					onSearch={handleSearch}
+					movies={movies}
+					setFilteredMovies={setFilteredMovies}
+					/>
+			</div>
+			<div className='top-page-buttons'>
 				{filteredMovies === null && (
 					<div>
 						<button onClick={handlePrevPage} disabled={currentPage === 1}>
@@ -71,6 +74,7 @@ const HomePage = () => {
 						<button onClick={handleNextPage} disabled={currentPage === 13}>Next Page</button>
 					</div>
 				)}
+			</div>
 			<div className='movie-list'>
 				<MovieGrid
 					movies={filteredMovies !== null ? filteredMovies : pagnatedMovies}

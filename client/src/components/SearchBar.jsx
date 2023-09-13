@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SearchBar.css';
 
 const SearchBar = ({ onSearch, setFilteredMovies, movies }) => {
   const [query, setQuery] = useState('');
@@ -33,7 +34,7 @@ const clearSearch = () =>{
         onChange={handleInputChange}
       />
       <button type="submit" onClick={handleSubmit}>Search</button>
-      <button onClick={clearSearch}>clear search</button>
+      <button onClick={clearSearch}>Clear Search</button>
     </form>
   );
 };
