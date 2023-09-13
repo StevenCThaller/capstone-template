@@ -19,15 +19,21 @@ const SearchBar = ({ onSearch, setFilteredMovies, movies }) => {
   setFilteredMovies(filteredResults);
 };
 
+const clearSearch = () =>{
+  setQuery('')
+  setFilteredMovies(null)
+}
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <input
         type="text"
         placeholder="Search for movie..."
         value={query}
         onChange={handleInputChange}
       />
-      <button type="submit">Search</button>
+      <button type="submit" onClick={handleSubmit}>Search</button>
+      <button onClick={clearSearch}>clear search</button>
     </form>
   );
 };
