@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import './App.css';
-import CreateUser from './pages/CreateUser';
-import SignIn from './pages/SignIn';
-import HomePage from './pages/HomePage';
+import CreateUser from './pages/CreateUser/CreateUser';
+import SignIn from './pages/SignIn/SignIn';
+import HomePage from './pages/HomePage/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserContext } from './context/userContext';
 import { Navigate } from 'react-router-dom';
-import MovieDetail from './pages/MovieDetail';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
 
 function App() {
 	const { user } = useContext(UserContext);
