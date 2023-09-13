@@ -8,3 +8,11 @@ h1 {
     font-family: 'Creepster', cursive;
     color: #ec1c1c;
 }
+
+.search-bar {
+    margin: 20px;
+}
+
+.top-page-buttons {
+    margin: 20px;
+}
