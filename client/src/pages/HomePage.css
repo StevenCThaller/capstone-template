@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Creepster&family=Oswald&family=Raleway:wght@400;700&display=swap");
 
 body {
     background-color: black;
 }
 
 h1 {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Creepster', cursive;
     color: #ec1c1c;
 }

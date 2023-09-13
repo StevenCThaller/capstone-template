@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import MovieGrid from '../components/MovieGrid'
-import NavBar from '../components/Navbar';
+import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 import axios from 'axios';
 import './HomePage.css';
