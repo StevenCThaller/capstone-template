@@ -3,11 +3,13 @@ import StarRating from "../StarRating/StarRating"
 import './Reviews.css';
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Reviews({movieID}) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
   const {user, username} = useContext(UserContext)
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     setCommentText(e.target.value);
@@ -30,6 +32,7 @@ function Reviews({movieID}) {
       requestData
     );
     console.log(response.data)
+    navigate('/')
   };
 
   return (
