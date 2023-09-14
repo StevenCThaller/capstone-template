@@ -1,5 +1,5 @@
 export const allMovies = async (req, res, next) => {
-    console.log("hit");
+    
     try {
         const fetchedMovies = [];
         const fetch = require('node-fetch');

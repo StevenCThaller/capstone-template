@@ -1,7 +1,6 @@
 import User from '../models/userSchema';
 
 export const getUserReviews = async (req, res, next) => {
-    console.log('hit');
     try {
         const { uid } = req.params;
         const user = await User.findOne({ uid }).populate('reviews');

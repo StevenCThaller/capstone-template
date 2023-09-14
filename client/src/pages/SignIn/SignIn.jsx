@@ -38,7 +38,7 @@ function SignIn() {
 			console.error('Error signing in:', error);
 		}
 	};
-	console.log(user);
+	
 	return (
 		<div>
 			<h2>Sign In</h2>

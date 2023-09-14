@@ -2,7 +2,7 @@ import User from "../models/userSchema";
 import Review from "../models/reviewSchema"
 
 export const createReview = async (req, res, next) => {
-    console.log("hit");
+   
     try {
         const { uid, username, movieID, Rating, commentText } = req.body;
         const newReview = new Review({ uid, username, movieID, Rating, commentText });

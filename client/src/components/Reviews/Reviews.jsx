@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import StarRating from "../StarRating/StarRating"
 import './Reviews.css';
+import { UserContext } from "../../context/userContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function Reviews() {
+function Reviews({movieID}) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
+  const {user, username} = useContext(UserContext)
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     setCommentText(e.target.value);
@@ -14,12 +19,20 @@ function Reviews() {
     setRating(value);
   };
 
-  const handleSubmit = () => {
-    if (commentText.trim() !== "" && rating > 0) {
-      console.log("Review submitted:", commentText, "Rating:", rating);
-      setCommentText("");
-      setRating(0);
-    }
+  const handleSubmit = async() => {
+    const requestData = {
+      uid: user,
+      username: username,
+      movieID: movieID,
+      Rating: rating,
+      commentText: commentText
+    };
+    const response = await axios.post(
+      'http://localhost:3001/api/review',
+      requestData
+    );
+    console.log(response.data)
+    navigate('/')
   };
 
   return (

@@ -14,7 +14,7 @@ const HomePage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filteredMovies, setFilteredMovies] = useState(null);
 	const [pagnatedMovies, setPagnatedMovies] = useState([]);
-	console.log('pagnated movies', pagnatedMovies);
+	
 	useEffect(() => {
 		axios
 			.get('http://localhost:3001/api/movies')
