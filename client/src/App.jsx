@@ -10,6 +10,7 @@ import MovieDetail from './pages/MovieDetail/MovieDetail';
 
 function App() {
 	const { user } = useContext(UserContext);
+	
 	const ProtectedRoute = ({ user, children }) => {
 		if (!user) {
 			return <Navigate to='/signin' replace />;

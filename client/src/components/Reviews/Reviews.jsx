@@ -9,6 +9,7 @@ function Reviews({movieID}) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
   const {user, username} = useContext(UserContext)
+  console.log(username, user)
   const navigate = useNavigate()
 
   const handleInputChange = (e) => {
@@ -21,7 +22,7 @@ function Reviews({movieID}) {
 
   const handleSubmit = async() => {
     const requestData = {
-      uid: user,
+      uid: user.uid,
       username: username,
       movieID: movieID,
       Rating: rating,
