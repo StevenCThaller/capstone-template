@@ -68,7 +68,8 @@ export const UserProvider = ({ children }) => {
     username,
     handleSignin,
     handleSignout,
-	setUsername
+	setUsername,
+	setUser
   };
 
   return (

@@ -9,7 +9,7 @@ function Reviews({movieID}) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
   const {user, username} = useContext(UserContext)
-  console.log(username, user)
+  console.log(username, user.uid)
   const navigate = useNavigate()
 
   const handleInputChange = (e) => {
