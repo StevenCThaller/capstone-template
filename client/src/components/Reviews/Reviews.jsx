@@ -5,7 +5,7 @@ import { UserContext } from "../../context/userContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Reviews({movieID}) {
+function Reviews( {movieID, onReviewSubmit }) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
   const {user, username} = useContext(UserContext)
@@ -33,7 +33,9 @@ function Reviews({movieID}) {
       requestData
     );
     console.log(response.data)
-    navigate('/')
+    onReviewSubmit(response.data);
+    setCommentText(""); 
+    setRating(0);
   };
 
   return (
