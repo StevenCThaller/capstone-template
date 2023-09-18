@@ -15,7 +15,7 @@ const MovieDetail = () => {
   	console.log("reviews", reviews)
 
 	const handleReviewSubmit = (newReview) => {
-		setReviews([...reviews, newReview]); 
+		setReviews([newReview, ...reviews]); 
 	};
 
 	useEffect(() => {
