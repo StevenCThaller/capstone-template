@@ -33,7 +33,7 @@ function Reviews( {movieID, onReviewSubmit }) {
       requestData
     );
     console.log(response.data)
-    onReviewSubmit(response.data);
+    onReviewSubmit(requestData);
     setCommentText(""); 
     setRating(0);
   };
