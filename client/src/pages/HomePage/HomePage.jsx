@@ -59,11 +59,15 @@ const HomePage = () => {
 			<h2>Hello {username}!</h2>
 			<NavBar />
 			<div className='search-bar'>
-				<SearchBar
-					onSearch={handleSearch}
-					movies={movies}
-					setFilteredMovies={setFilteredMovies}
-					/>
+				{movies.length > 0 ?(
+					<SearchBar
+						onSearch={handleSearch}
+						movies={movies}
+						setFilteredMovies={setFilteredMovies}
+						/>
+				):
+				<h2>loading search Bar</h2>
+				}
 			</div>
 			<div className='top-page-buttons'>
 				{filteredMovies === null && (

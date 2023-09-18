@@ -3,6 +3,7 @@ import './SearchBar.css';
 
 const SearchBar = ({ onSearch, setFilteredMovies, movies }) => {
   const [query, setQuery] = useState('');
+  console.log("movies in searchbar", movies)
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
