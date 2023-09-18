@@ -7,6 +7,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import axios from 'axios';
 import './HomePage.css';
 import Reviews from '../../components/Reviews/Reviews';
+import ContactForm from '../ContactPage/ContactPage';
 
 const HomePage = () => {
 	const { setUser, user, username, setUsername } = useContext(UserContext);
