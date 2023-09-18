@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './App.css';
 import CreateUser from './pages/CreateUser/CreateUser';
 import SignIn from './pages/SignIn/SignIn';
@@ -9,13 +9,15 @@ import { Navigate } from 'react-router-dom';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 
 function App() {
-	const { user } = useContext(UserContext);
-	const ProtectedRoute = ({ user, children }) => {
-		if (!user) {
-			return <Navigate to='/signin' replace />;
-		}
-		return children;
-	};
+  const { user, setUser } = useContext(UserContext);
+
+  const ProtectedRoute = ({children }) => {
+	const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (!storedUser) {
+      return <Navigate to='/signin' replace />;
+    }
+    return children;
+  };
 
 	return (
 		<Router>
@@ -23,9 +25,9 @@ function App() {
 				<Routes>
 					<Route path='/signup' element={<CreateUser />} />
 					<Route path='/signin' element={<SignIn />} />
-					<Route path='/' element={<HomePage />}/>
-					<Route path='/movieDetail/:id' element={<MovieDetail/>}/>
-					{/* <Route
+					{/* <Route path='/' element={<HomePage />}/>
+					<Route path='/movieDetail/:id' element={<MovieDetail/>}/> */}
+					<Route
 						path='/'
 						element={
 							<ProtectedRoute user={user}>
@@ -40,7 +42,7 @@ function App() {
 								<MovieDetail />
 							</ProtectedRoute>
 						}
-					/> */}
+					/>
 				</Routes>
 			</>
 		</Router>

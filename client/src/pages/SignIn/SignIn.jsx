@@ -9,35 +9,38 @@ import axios from 'axios';
 function SignIn() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const { setUser, user, setUsername } = useContext(UserContext);
+	const { handleSignin, setUsername } = useContext(UserContext);
 	const navigate = useNavigate();
 
-	const setUsersName = (userID) =>{
-			axios.get(`http://localhost:3001/api/user/${userID}`)
-			  .then((response) => {
-				setUsername(response.data.username);
-			  })
-			  .catch((error) => {
-				console.error('Error fetching data:', error);
-			  });
-	}
-
-	const handleSignin = async () => {
+	const handleSignInClick = async () => {
 		try {
-			const userCredential = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password
-			);
-			const user = userCredential.user;
-			setUser(user.uid);
-			setUsersName(user.uid)
-			console.log('Successfully signed in:', user);
-			navigate('/');
+		  // Call the handleSignin function from context
+		  await handleSignin(email, password);
+		  
+		  // After successful sign-in, fetch and set the user's name
+		  const user = JSON.parse(localStorage.getItem('user'));
+		  const userID = user.uid;
+		  axios
+			.get(`http://localhost:3001/api/user/${userID}`)
+			.then((response) => {
+			  const username = response.data.username;
+	
+			  // Set the username in the context
+			  setUsername(username);
+	
+			  // Store the username in local storage
+			  localStorage.setItem('username', JSON.stringify(username));
+			})
+			.catch((error) => {
+			  console.error('Error fetching data:', error);
+			});
+	
+		  console.log('Successfully signed in');
+		  navigate('/');
 		} catch (error) {
-			console.error('Error signing in:', error);
+		  console.error('Error signing in:', error);
 		}
-	};
+	  };
 	
 	return (
 		<div>
@@ -54,7 +57,7 @@ function SignIn() {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button onClick={handleSignin}>Sign In</button>
+			<button onClick={handleSignInClick}>Sign In</button>
       <p><Link to={'/signup'}>Dont have an account? Click here to sign up</Link></p>
 		</div>
 	);
