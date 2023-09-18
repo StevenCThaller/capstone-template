@@ -4,6 +4,7 @@ import { UserContext } from '../../context/userContext';
 import MovieGrid from '../../components/MovieGrid/MovieGrid'
 import NavBar from '../../components/NavBar/NavBar';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import axios from 'axios';
 import './HomePage.css';
 import Reviews from '../../components/Reviews/Reviews';
@@ -66,7 +67,7 @@ const HomePage = () => {
 						setFilteredMovies={setFilteredMovies}
 						/>
 				):
-				<h2>loading search Bar</h2>
+				<h3><LoadingSpinner/> Loading Search Bar</h3>
 				}
 			</div>
 			<div className='top-page-buttons'>
