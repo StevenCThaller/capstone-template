@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Creepster&family=Oswald&family=Raleway:wght@400;700&display=swap");
+
+h3 {
+  color: blue;
+}
+input {
+  background-color: rgb(223, 133, 16);
+  border-radius: 10px;
+  color: black;
+}
+textarea {
+  background-color: rgb(223, 133, 16);
+  color: black;
+  border-radius: 10px;
+}
+label {
+  font-family: "Creepster";
+}
+#button {
+  font-family: "Creepster";
+}

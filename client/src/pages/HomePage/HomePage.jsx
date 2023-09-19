@@ -8,6 +8,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import axios from 'axios';
 import './HomePage.css';
 import Reviews from '../../components/Reviews/Reviews';
+import ContactForm from '../ContactPage/ContactPage';
 
 const HomePage = () => {
 	const {username} = useContext(UserContext);

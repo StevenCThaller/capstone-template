@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserContext } from './context/userContext';
 import { Navigate } from 'react-router-dom';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
+import ContactPage from './pages/ContactPage/ContactPage';
 import ReviewDetail from './pages/ReviewDetail/ReviewDetail';
+
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -26,8 +28,10 @@ function App() {
 				<Routes>
 					<Route path='/signup' element={<CreateUser />} />
 					<Route path='/signin' element={<SignIn />} />
-					{/* <Route path='/' element={<HomePage />}/>
-					<Route path='/movieDetail/:id' element={<MovieDetail/>}/> */}
+
+					<Route path='/' element={<HomePage />}/>
+					<Route path='/movieDetail/:id' element={<MovieDetail/>}/>
+					<Route path='/contact' element={<ContactPage />} />
 					<Route
 						path='/'
 						element={
