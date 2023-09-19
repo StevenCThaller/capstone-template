@@ -1,6 +1,7 @@
-export const allMovies = async (req, res, next) => {
+export const searchedMovies = async (req, res, next) => {
     
     try {
+        const {movieTitle} = req.params
         const fetchedMovies = [];
         const fetch = require('node-fetch');
         for (let i = 1; i <= 13; i++) {
@@ -15,7 +16,8 @@ export const allMovies = async (req, res, next) => {
 
             const response = await fetch(url, options);
             const json = await response.json();
-            fetchedMovies.push(...json.results);
+            const filteredMovies = json.results.filter(movie => movie.title.toLowerCase().includes(movieTitle.toLowerCase()));
+            fetchedMovies.push(...filteredMovies);
         }
         console.log("length", fetchedMovies.length)
         res.json(fetchedMovies);

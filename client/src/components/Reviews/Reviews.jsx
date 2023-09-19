@@ -5,10 +5,11 @@ import { UserContext } from "../../context/userContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Reviews({movieID}) {
+function Reviews( {movieID, onReviewSubmit }) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
   const {user, username} = useContext(UserContext)
+  console.log(username, user.uid)
   const navigate = useNavigate()
 
   const handleInputChange = (e) => {
@@ -21,7 +22,7 @@ function Reviews({movieID}) {
 
   const handleSubmit = async() => {
     const requestData = {
-      uid: user,
+      uid: user.uid,
       username: username,
       movieID: movieID,
       Rating: rating,
@@ -32,7 +33,9 @@ function Reviews({movieID}) {
       requestData
     );
     console.log(response.data)
-    navigate('/')
+    onReviewSubmit(requestData);
+    setCommentText(""); 
+    setRating(0);
   };
 
   return (
