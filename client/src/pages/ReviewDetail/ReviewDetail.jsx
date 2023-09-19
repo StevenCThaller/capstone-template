@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
 import LogoHeader from '../../components/Header/Header';
+import ReviewCard from '../../components/ReviewCard/ReviewCard';
+import ReplyForm from '../../components/Reply/ReplyForm';
+import ReplyCard from '../../components/ReplyCard/ReplyCard';
 
 const ReviewDetail = () => {
   const [reviewDetails, setReviewDetails] = useState([]);
+  const [reviewPosted, setReviewPosted] = useState(false)
   const { reviewID } = useParams();
 
   useEffect(() => {
@@ -16,45 +20,20 @@ const ReviewDetail = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  console.log(reviewDetails);
+  }, [reviewPosted]);
 
   return (
+    
     <div>
-      <LogoHeader />
-      <NavBar />
-      <div className="review" style={{ margin: "auto" }}>
-        <div className="user-info">
-          <h4 className="user-name">User: {reviewDetails.username}</h4>
-          <h3 className="review-star-rating">
-            ★ {reviewDetails.Rating}/5
-          </h3>
-        </div>
-        {reviewDetails.commentText ? (
-          <>
-            <p>Comment: {reviewDetails.commentText}</p>
-          </>
-        ) : (
-          <p>No Review</p>
-        )}
-      </div>
-      <div className="review-area">
-        <h2 id="review">Leave a Reply</h2>
-        <div className="review-card">
-          <textarea
-            id="reviewArea"
-            rows="2"
-            cols="50"
-            placeholder="Enter your review here"
-            style={{
-              borderRadius: "5px",
-              padding: "10px",
-            }}
-          />
-          <button id="submit">Submit</button>
-        </div>
-      </div>
+     {reviewDetails && Object.keys(reviewDetails).length > 0 && (
+        <>
+        <LogoHeader />
+        <NavBar />
+        <ReviewCard reviewDetails={reviewDetails}/>
+        <ReplyForm reviewDetails={reviewDetails} setReviewPosted={setReviewPosted}/>
+       <ReplyCard reviewDetails={reviewDetails}/>
+        </>
+      )}
     </div>
   );
 };
