@@ -1,4 +1,4 @@
-import React, { useState , useRef} from "react";
+import React, { useState, useRef } from "react";
 import "./ContactPage.css";
 
 function ContactForm() {
@@ -22,21 +22,22 @@ function ContactForm() {
       `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${message}`
     )}`;
     window.location.href = mailtoUrl;
-};
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     formRef.current.reset();
     setMessage("");
-    setFormData({ name: "", email: "", message: "" }); 
+    setFormData({ name: "", email: "", message: "" });
     console.log(formData);
   };
 
   return (
-    <div>
+    <div className="container">
+      <div className="bg-image">
       <h1>Contact Us</h1>
       <form ref={formRef} onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:  </label>
+        <label htmlFor="name">Name: </label>
         <input
           type="text"
           id="name"
@@ -48,7 +49,7 @@ function ContactForm() {
         <br />
         <br />
 
-        <label htmlFor="email">Email:   </label>
+        <label htmlFor="email">Email: </label>
         <input
           type="email"
           id="email"
@@ -59,8 +60,8 @@ function ContactForm() {
         />
         <br />
         <br />
-       
-        <label htmlFor="message">Message:   </label>
+
+        <label htmlFor="message">Message: </label>
         <br />
         <textarea
           id="message"
@@ -73,8 +74,11 @@ function ContactForm() {
         ></textarea>
         <br />
         <br />
-           <button id="button" onClick={handleEmailSubmit}>Send Message</button>
+        <button id="button" onClick={handleEmailSubmit}>
+          Send Message
+        </button>
       </form>
+    </div>
     </div>
   );
 }
