@@ -10,22 +10,12 @@ import './HomePage.css';
 import Reviews from '../../components/Reviews/Reviews';
 
 const HomePage = () => {
-	const { setUser, user, username, setUsername } = useContext(UserContext);
-	const [movies, setMovies] = useState([]);
+	const {username} = useContext(UserContext);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filteredMovies, setFilteredMovies] = useState(null);
 	const [pagnatedMovies, setPagnatedMovies] = useState([]);
+	const [loadingMovies, setLoadingMovies] = useState(false)
 	
-	useEffect(() => {
-		axios
-			.get('http://localhost:3001/api/movies')
-			.then((response) => {
-				setMovies(response.data);
-			})
-			.catch((error) => {
-				console.error('Error fetching data:', error);
-			});
-	}, []);
 
 	useEffect(() => {
 		axios
@@ -60,15 +50,11 @@ const HomePage = () => {
 			<h2>Hello {username}!</h2>
 			<NavBar />
 			<div className='search-bar'>
-				{movies.length > 0 ?(
 					<SearchBar
 						onSearch={handleSearch}
-						movies={movies}
 						setFilteredMovies={setFilteredMovies}
+						setLoadingMovies = {setLoadingMovies}
 						/>
-				):
-				<h3><LoadingSpinner/> Loading Search Bar</h3>
-				}
 			</div>
 			<div className='top-page-buttons'>
 				{filteredMovies === null && (
@@ -81,9 +67,13 @@ const HomePage = () => {
 				)}
 			</div>
 			<div className='movie-list'>
+				{loadingMovies ?(
+					<h3><LoadingSpinner/> Loading Movies</h3>
+				):
 				<MovieGrid
 					movies={filteredMovies !== null ? filteredMovies : pagnatedMovies}
 				/>
+				}
 			</div>
 			{filteredMovies === null && (
 				<div>
