@@ -6,22 +6,25 @@ import LogoHeader from '../../components/Header/Header';
 import NavBar from '../../components/NavBar/NavBar';
 import './MovieDetail.css';
 import Reviews from '../../components/Reviews/Reviews';
+import ReviewsList from '../../components/ReviewsList/ReviewsList';
 
 const MovieDetail = () => {
 	const { id } = useParams();
 	const [movie, setMovie] = useState();
-  const [reviews, setReviews] = useState([])
-  console.log("reviews", reviews)
+  	const [reviews, setReviews] = useState([])
+  	console.log("reviews", reviews)
+
+	const handleReviewSubmit = (newReview) => {
+		setReviews([newReview, ...reviews]); 
+	};
+
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/api/movieByID/${id}`)
 			.then((response) => {
-				// Access the data from the response
 				setMovie(response.data);
-				// You can now use response.data for further processing
 			})
 			.catch((error) => {
-				// Handle any errors that occur during the request
 				console.error('Error fetching data:', error);
 			});
 
@@ -53,7 +56,8 @@ const MovieDetail = () => {
 							tagline={movie.tagline}
 						/>
 					</div>
-					<Reviews movieID={movie.id}/>
+					<Reviews movieID={movie.id} onReviewSubmit={handleReviewSubmit}/>
+					<ReviewsList reviews={reviews} />
 				</>
 			)}
 		</div>

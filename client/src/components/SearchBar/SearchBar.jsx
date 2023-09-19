@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
+import axios from 'axios';
 
-const SearchBar = ({ onSearch, setFilteredMovies, movies }) => {
+const SearchBar = ({ onSearch, setFilteredMovies, setLoadingMovies }) => {
   const [query, setQuery] = useState('');
+ 
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    
+      event.preventDefault();
+      setLoadingMovies(true)
     const changedQuery = query.trim().toLowerCase();
-    const filteredResults = movies.filter((movie) => {
-      const movieTitle = movie.title.toLowerCase(); 
-      return movieTitle.includes(changedQuery);
-  });
-  onSearch(changedQuery); 
-  setFilteredMovies(filteredResults);
+    axios
+			.get(`http://localhost:3001/api/movies/${changedQuery}`)
+			.then((response) => {
+				setFilteredMovies(response.data);
+        setLoadingMovies(false)
+			})
+			.catch((error) => {
+				console.error('Error fetching data:', error);
+			});
 };
 
 const clearSearch = () =>{
