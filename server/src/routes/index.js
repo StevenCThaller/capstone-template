@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createUser } from "../controllers/createUser";
-import { allMovies } from "../controllers/allMovies";
+import { searchedMovies } from "../controllers/searchedMovies";
 import { oneMovie } from "../controllers/oneMovie";
 import { findUser } from "../controllers/getUser";
 import { createReview } from "../controllers/createReview";
@@ -14,7 +14,7 @@ const router = Router();
 
 router.route("/").post(createUser);
 
-router.route("/movies").get(allMovies)
+router.route("/movies/:movieTitle").get(searchedMovies)
 
 router.route('/movieByID/:id').get(oneMovie)
 
