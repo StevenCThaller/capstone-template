@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserContext } from './context/userContext';
 import { Navigate } from 'react-router-dom';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
+import ReviewDetail from './pages/ReviewDetail/ReviewDetail';
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -40,6 +41,14 @@ function App() {
 						element={
 							<ProtectedRoute user={user}>
 								<MovieDetail />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/reviewDetail/:reviewID'
+						element={
+							<ProtectedRoute user={user}>
+								<ReviewDetail/>
 							</ProtectedRoute>
 						}
 					/>
