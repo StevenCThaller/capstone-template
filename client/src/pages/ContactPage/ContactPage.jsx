@@ -17,10 +17,18 @@ function ContactForm() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const handleEmailSubmit = () => {
+    const mailtoUrl = `mailto:terrortimemachinecapstone@gmail.com?subject=Contact Us&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${message}`
+    )}`;
+    window.location.href = mailtoUrl;
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Send formData to your server or email service here
     formRef.current.reset();
+    setMessage("");
+    setFormData({ name: "", email: "", message: "" }); 
     console.log(formData);
   };
 
@@ -65,14 +73,7 @@ function ContactForm() {
         ></textarea>
         <br />
         <br />
-
-        <a
-          href={`mailto:your-email@example.com?subject=Contact Us&body=${encodeURIComponent(
-            message
-          )}`}
-        >
-        </a>
-        <button type="submit">Submit</button>
+           <button id="button" onClick={handleEmailSubmit}>Send Message</button>
       </form>
     </div>
   );
