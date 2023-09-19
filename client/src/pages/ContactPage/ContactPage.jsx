@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import NavBar from '../../components/NavBar/NavBar';
+import LogoHeader from '../../components/Header/Header';
 import "./ContactPage.css";
 
 function ContactForm() {
@@ -13,10 +15,12 @@ function ContactForm() {
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const handleEmailSubmit = () => {
     const mailtoUrl = `mailto:terrortimemachinecapstone@gmail.com?subject=Contact Us&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${message}`
@@ -33,54 +37,59 @@ function ContactForm() {
   };
 
   return (
+    <>
+        <LogoHeader />
+        <NavBar />
     <div className="container">
       <div className="bg-image">
-      <h1>Contact Us</h1>
-      <form ref={formRef} onSubmit={handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          required
-        />
-        <br />
-        <br />
+        <h1>Contact Us</h1>
+        <form ref={formRef} onSubmit={handleSubmit}>
+          <label htmlFor="name">Name: </label>
+          <input className="contact-input"
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+          />
+          <br />
+          <br />
 
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          required
-        />
-        <br />
-        <br />
+          <label htmlFor="email">Email: </label>
+          <input className="contact-input"
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <br />
+          <br />
 
-        <label htmlFor="message">Message: </label>
-        <br />
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-          cols="40"
-          value={message}
-          onChange={handleMessageChange}
-          required
-        ></textarea>
-        <br />
-        <br />
-        <button id="button" onClick={handleEmailSubmit}>
-          Send Message
-        </button>
-      </form>
+          <label htmlFor="message">Message: </label>
+          <br />
+          <textarea className="contact-textarea"
+            id="message"
+            name="message"
+            rows="5"
+            cols="40"
+            value={message}
+            onChange={handleMessageChange}
+            required
+          ></textarea>
+          <br />
+          <br />
+          <button id="button" onClick={handleEmailSubmit}>
+            Send Message
+          </button>
+        </form>
+      </div>
     </div>
-    </div>
+    </>
   );
 }
 
 export default ContactForm;
+
