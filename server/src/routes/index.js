@@ -9,6 +9,8 @@ import { getMovieReviews } from "../controllers/getMovieReviews";
 import { createReply } from "../controllers/createReply";
 import { moviesByPage } from "../controllers/getMoviesByPage";
 import { getReview } from "../controllers/getReview";
+import { deleteReview } from "../controllers/deleteReview";
+import { deleteReply } from "../controllers/deleteReply";
 
 const router = Router();
 
@@ -32,5 +34,8 @@ router.route('/reply').post(createReply)
 
 router.route('/moviesByPage/:page').get(moviesByPage)
 
+router.route('/deleteReview/:uid/:reviewID').delete(deleteReview)
+
+router.route('/deleteReply/:reviewID/:replyID').delete(deleteReply)
 
 export default router;
