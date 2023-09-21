@@ -51,9 +51,10 @@ const ReviewsList = ({ reviews, setReviews }) => {
                 <button
                   className="delete-button"
                   onClick={() => handleDeleteReview(review._id)}
-                  style={{width: "50px"}}
                 >
+                  <div>
                   <FontAwesomeIcon icon={faTrash} />
+                  </div>
                 </button>
               )}
               <button className="reply-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>Reply</button>

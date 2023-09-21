@@ -53,4 +53,11 @@
   .thumbs .icon-down:hover {
     color: #ec1c1c;
   }
+
+  .delete-button {
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
   
