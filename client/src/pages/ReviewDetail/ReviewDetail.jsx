@@ -15,7 +15,8 @@ const ReviewDetail = () => {
   useEffect(() => {
     axios.get(`http://localhost:3001/api/review/${reviewID}`)
       .then((response) => {
-        setReviewDetails(response.data);
+        const reversedReplies = response.data.Replies.reverse();
+      setReviewDetails({ ...response.data, Replies: reversedReplies });
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +32,7 @@ const ReviewDetail = () => {
         <NavBar />
         <ReviewCard reviewDetails={reviewDetails}/>
         <ReplyForm reviewDetails={reviewDetails} setReviewPosted={setReviewPosted}/>
-       <ReplyCard reviewDetails={reviewDetails}/>
+       <ReplyCard reviewDetails={reviewDetails} setReviewDetails={setReviewDetails} reviewID={reviewID}/>
         </>
       )}
     </div>

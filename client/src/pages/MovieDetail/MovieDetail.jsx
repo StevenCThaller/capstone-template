@@ -31,7 +31,8 @@ const MovieDetail = () => {
       axios
 			.get(`http://localhost:3001/api/movieReviews/${id}`)
 			.then((response) => {
-				setReviews(response.data);
+				const reversedReviews = response.data.reverse();
+      		setReviews(reversedReviews);
 			})
 			.catch((error) => {
 				console.error('Error fetching data:', error);
@@ -57,7 +58,7 @@ const MovieDetail = () => {
 						/>
 					</div>
 					<Reviews movieID={movie.id} onReviewSubmit={handleReviewSubmit}/>
-					<ReviewsList reviews={reviews} />
+					<ReviewsList reviews={reviews} setReviews={setReviews} />
 				</>
 			)}
 		</div>

@@ -1,18 +1,33 @@
-import React from 'react';
-import StarRating from '../StarRating/StarRating';
+import React, {useContext} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './ReviewsList.css';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/userContext';
+import axios from 'axios';
 
 
-const ReviewsList = ({ reviews }) => {
+const ReviewsList = ({ reviews, setReviews }) => {
   const navigate = useNavigate()
+ const { user } = useContext(UserContext); 
+  const handleDeleteReview = (reviewID) => {
+    axios
+			.delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
+			.then((response) => {
+				console.log("review Deleted")
+        const updatedReviews = reviews.filter((review) => review._id !== reviewID);
+        setReviews(updatedReviews);
+			})
+			.catch((error) => {
+				console.error('Error fetching data:', error);
+			});
+  };
+ 
     return (
 <div className="reviews-section">
       <h2>User Reviews</h2>
       <div className="review-container">
-        {reviews.length > 0 ? (
+        {reviews.length > 0 && user ? (
           reviews.map((review) => (
             <div className="review" key={review._id}>
               <div className="user-info">
@@ -32,6 +47,15 @@ const ReviewsList = ({ reviews }) => {
               ) : (
                 <p>No Review</p>
               )}
+              {user.uid == review.uid && (
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeleteReview(review._id)}
+                  style={{width: "50px"}}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              )}
               <button className="reply-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>Reply</button>
             </div>
           ))
@@ -42,12 +66,5 @@ const ReviewsList = ({ reviews }) => {
     </div>
   );
 };
-  
 
 export default ReviewsList;
-
-
-
-
-
-
