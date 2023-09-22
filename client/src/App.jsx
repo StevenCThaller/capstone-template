@@ -28,10 +28,6 @@ function App() {
         <Routes>
           <Route path="/signup" element={<CreateUser />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="forum" element={<ForumPage />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movieDetail/:id" element={<MovieDetail />} />
-          <Route path="/contact" element={<ContactPage />} />
           <Route
             path="/"
             element={
@@ -53,6 +49,22 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <ReviewDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <ProtectedRoute user={user}>
+                <ContactPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/forum"
+            element={
+              <ProtectedRoute user={user}>
+                <ForumPage />
               </ProtectedRoute>
             }
           />
