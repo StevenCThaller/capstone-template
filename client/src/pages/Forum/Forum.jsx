@@ -1,23 +1,40 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ForumPostList from "../../components/Forum/Forum";
 import "./Forum.css";
 import { UserContext } from '../../context/userContext';
 import NavBar from "../../components/NavBar/NavBar";
+import axios from "axios";
 
 
 function ForumPage() {
   const [postContent, setPostContent] = useState("");
   const [forumPosts, setForumPosts] = useState([]);
-  const { username } = useContext(UserContext);
+  const { user, username } = useContext(UserContext);
+
+useEffect(()=>{
+  axios
+			.get(`http://localhost:3001/api/getPosts`)
+			.then((response) => {
+				setForumPosts(response.data);
+			})
+			.catch((error) => {
+				console.error('Error fetching data:', error);
+			});
+},[])
 
 
-  const handlePostSubmit = () => {
-    const newPost = {
-      id: Date.now(),
-      content: postContent,
-      author: username,
+  const handlePostSubmit = async() => {
+    const requestData = {
+      uid: user.uid,
+      username: username,
+      postText: postContent
     };
-    setForumPosts([newPost, ...forumPosts]);
+    const response = await axios.post(
+      'http://localhost:3001/api/createPost',
+      requestData
+    );
+    console.log(response.data)
+    setForumPosts([requestData, ...forumPosts]);
     setPostContent("");
   };
 
@@ -34,7 +51,7 @@ function ForumPage() {
       <button className="button" onClick={handlePostSubmit}>
         Submit
       </button>
-      <ForumPostList posts={forumPosts.reverse()}/>
+      <ForumPostList posts={forumPosts.reverse()} setPosts = {setForumPosts}/>
     </div>
   );
 }
