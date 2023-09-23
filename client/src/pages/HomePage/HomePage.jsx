@@ -4,6 +4,7 @@ import { UserContext } from '../../context/userContext';
 import MovieGrid from '../../components/MovieGrid/MovieGrid'
 import NavBar from '../../components/NavBar/NavBar';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import SortMovies from '../../components/FilterMovies/FilterMovies';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import axios from 'axios';
 import './HomePage.css';
@@ -50,6 +51,13 @@ const HomePage = () => {
 			<h1>Terror Time Machine</h1>
 			<h2>Hello {username}!</h2>
 			<NavBar />
+			<div className='sort'>
+					<SortMovies
+						onSearch={handleSearch}
+						setFilteredMovies={setFilteredMovies}
+						setLoadingMovies = {setLoadingMovies}
+						/>
+			</div>
 			<div className='search-bar'>
 					<SearchBar
 						onSearch={handleSearch}
