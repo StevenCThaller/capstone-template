@@ -15,39 +15,51 @@ import { createPost } from "../controllers/createPost";
 import { getPosts } from "../controllers/getPosts";
 import { deletePost } from "../controllers/deletePost";
 import { getUserPosts } from "../controllers/getUserPosts";
+import { sortedMovies } from "../controllers/sortedMovies";
 
 const router = Router();
 
-router.route("/").post(createUser);
-
+//Movies
 router.route("/movies/:movieTitle").get(searchedMovies)
-
 router.route('/movieByID/:id').get(oneMovie)
+router.route('/moviesByPage/:page').get(moviesByPage)
+router.route('/sortedMovies/:sort').get(sortedMovies)
 
+//User
+router.route("/").post(createUser);
 router.route('/user/:uid').get(findUser)
 
+//Reviews
 router.route('/review').post(createReview)
-
 router.route('/review/:reviewID').get(getReview)
-
 router.route('/getReviews/:uid').get(getUserReviews)
-
 router.route('/movieReviews/:movieID').get(getMovieReviews)
-
-router.route('/reply').post(createReply)
-
-router.route('/moviesByPage/:page').get(moviesByPage)
-
 router.route('/deleteReview/:uid/:reviewID').delete(deleteReview)
 
+//Replies
+router.route('/reply').post(createReply)
 router.route('/deleteReply/:reviewID/:replyID').delete(deleteReply)
 
+//Posts
 router.route('/createPost').post(createPost)
-
 router.route('/getPosts').get(getPosts)
-
+router.route('/getUserPosts/:uid').get(getUserPosts)
 router.route('/deletePost/:uid/:postID').delete(deletePost)
 
-router.route('/getUserPosts/:uid').get(getUserPosts)
 
 export default router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
