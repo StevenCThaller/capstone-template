@@ -54,9 +54,7 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<h1>Terror Time Machine</h1>
 			<h2>Hello {username}!</h2>
-			<NavBar />
 			<div className='sort'>
 				<SortMovies
 					onSearch={handleSearch}

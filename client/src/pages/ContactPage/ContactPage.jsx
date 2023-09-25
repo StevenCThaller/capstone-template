@@ -38,8 +38,6 @@ function ContactForm() {
 
   return (
     <>
-        <LogoHeader />
-        <NavBar />
     <div className="container">
       <div className="bg-image">
         <h1>Contact Us</h1>

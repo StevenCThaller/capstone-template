@@ -40,8 +40,6 @@ const MovieDetail = () => {
 	}, [id]);
 	return (
 		<div>
-			<LogoHeader />
-			<NavBar />
 			{movie && (
 				<>
 					<div className='movie-container'>

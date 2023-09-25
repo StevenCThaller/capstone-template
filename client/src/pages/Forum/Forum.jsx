@@ -40,8 +40,7 @@ useEffect(()=>{
 
   return (
     <div className="form-container">
-      <NavBar />
-      <h1>Create a Forum Post</h1>
+      <h2>Create a Forum Post</h2>
       <textarea
         id="forumBox"
         value={postContent}

@@ -28,11 +28,9 @@ const ReviewDetail = () => {
     <div>
      {reviewDetails && Object.keys(reviewDetails).length > 0 && (
         <>
-        <LogoHeader />
-        <NavBar />
         <ReviewCard reviewDetails={reviewDetails}/>
         <ReplyForm reviewDetails={reviewDetails} setReviewPosted={setReviewPosted}/>
-       <ReplyCard reviewDetails={reviewDetails} setReviewDetails={setReviewDetails} reviewID={reviewID}/>
+        <ReplyCard reviewDetails={reviewDetails} setReviewDetails={setReviewDetails} reviewID={reviewID}/>
         </>
       )}
     </div>

@@ -10,7 +10,8 @@ import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import ReviewDetail from "./pages/ReviewDetail/ReviewDetail";
 import ForumPage from "./pages/Forum/Forum";
-import ForumPostDetails from "./pages/ForumPostDetail/ForumPostDetails";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -26,6 +27,8 @@ function App() {
   return (
     <Router>
       <>
+        <h1>Terror Time Machine</h1>
+        <NavBar/>
         <Routes>
           <Route path="/signup" element={<CreateUser />} />
           <Route path="/signin" element={<SignIn />} />
@@ -69,15 +72,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/postDetails/:postID"
-            element={
-              <ProtectedRoute user={user}>
-                <ForumPostDetails />
-              </ProtectedRoute>
-            }
-          />
         </Routes>
+        <Footer/>
       </>
     </Router>
   );
