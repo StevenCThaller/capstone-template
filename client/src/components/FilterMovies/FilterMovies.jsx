@@ -12,12 +12,8 @@ const SortMovies = ({ setFilteredMovies, setLoadingMovies }) => {
   const handleSortSubmit = (event) => {
     event.preventDefault();
     setLoadingMovies(true);
-
-    if (sortBy === 'A-Z') {
-    } else if (sortBy === 'Z-A') {
-    } else {
       axios
-        .get(`http://localhost:3001/api/movies/sort/${sortBy}`)
+        .get(`http://localhost:3001/api/sortedMovies/${sortBy}`)
         .then((response) => {
           setFilteredMovies(response.data);
           setLoadingMovies(false);
@@ -25,7 +21,6 @@ const SortMovies = ({ setFilteredMovies, setLoadingMovies }) => {
         .catch((error) => {
           console.error('Error fetching data:', error);
         });
-    }
   };
 
   const clearSort = () => {
