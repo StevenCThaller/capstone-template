@@ -10,6 +10,7 @@ import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import ReviewDetail from "./pages/ReviewDetail/ReviewDetail";
 import ForumPage from "./pages/Forum/Forum";
+import ForumPostDetails from "./pages/ForumPostDetail/ForumPostDetails";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -65,6 +66,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <ForumPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/postDetails/:postID"
+            element={
+              <ProtectedRoute user={user}>
+                <ForumPostDetails />
               </ProtectedRoute>
             }
           />
