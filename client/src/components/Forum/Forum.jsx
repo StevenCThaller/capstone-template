@@ -4,6 +4,7 @@ import { UserContext } from "../../context/userContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
+import './Forum.css';
 
 function ForumPostList({ posts, setPosts }) {
   const reversedPosts = [...posts].reverse();
@@ -24,14 +25,14 @@ function ForumPostList({ posts, setPosts }) {
   };
 
   return (
-    <div>
+    <div className="reviews-section">
       <h2>Posts</h2>
-      <ul>
+      <div className="post-container">
         {reversedPosts.map((post) => (
-          <div key={post._id}>
-            <li key={post._id}>
+          <div className="post" key={post._id}>
+            <div key={post._id}>
               <strong>{post.username}</strong>: {post.postText}
-            </li>
+            </div>
             {user.uid == post.uid && (
                 <button
                   className="delete-button"
@@ -42,10 +43,10 @@ function ForumPostList({ posts, setPosts }) {
                   </div>
                 </button>
               )}
-            <button onClick={()=>navigate(`/postDetails/${post._id}`)}>Reply</button>
+            <button className="reply-button" onClick={()=>navigate(`/postDetails/${post._id}`)}>Reply</button>
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

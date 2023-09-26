@@ -24,7 +24,7 @@ const ReviewsList = ({ reviews, setReviews }) => {
   };
  
     return (
-<div className="reviews-section">
+    <div className="reviews-section">
       <h2>User Reviews</h2>
       <div className="review-container">
         {reviews.length > 0 && user ? (
