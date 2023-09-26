@@ -4,6 +4,7 @@ import "./Forum.css";
 import { UserContext } from '../../context/userContext';
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
+import './Forum.css'
 
 
 function ForumPage() {
@@ -39,20 +40,29 @@ useEffect(()=>{
   };
 
   return (
-    <div className="form-container">
-      <h2>Create a Forum Post</h2>
-      <textarea
-        id="forumBox"
-        value={postContent}
-        onChange={(e) => setPostContent(e.target.value)}
-        placeholder="Write your post here"
-      ></textarea>
-      <button className="button" onClick={handlePostSubmit}>
-        Submit
-      </button>
-      <ForumPostList posts={forumPosts.reverse()} setPosts = {setForumPosts}/>
+    <div>
+      <h2 id="review">Create a Forum Post</h2>
+      <div>
+        <div className="post-card">
+        <textarea
+          id="reviewArea"
+          value={postContent}
+          onChange={(e) => setPostContent(e.target.value)}
+          placeholder="Write your post here"
+          style={{
+            borderRadius: "5px",
+            padding: "10px",
+            backgroundColor: "rgb(114, 114, 114)",
+            height: "150px"
+          }}
+        />
+        <button id="submit" onClick={handlePostSubmit}>Submit</button>
+        </div>
+        <ForumPostList posts={forumPosts.reverse()} setPosts={setForumPosts} />
+      </div>
     </div>
   );
+  
 }
 
 export default ForumPage;
