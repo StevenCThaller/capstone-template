@@ -50,7 +50,7 @@ useEffect(()=>{
       <button className="button" onClick={handlePostSubmit}>
         Submit
       </button>
-      <ForumPostList posts={forumPosts.reverse()} setPosts = {setForumPosts}/>
+      <ForumPostList posts={forumPosts.reverse()} setForumPosts = {setForumPosts}/>
     </div>
   );
 }
