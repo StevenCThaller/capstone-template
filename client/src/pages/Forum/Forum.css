@@ -1,8 +1,11 @@
-#forumBox {
-  border-radius: 10px;
-  width: 250px;
-  height: 75px;
-  margin: 0;
-  padding: 20px;
-}
+.post-card {
+    width: 40vw;
+    margin: auto;
+    margin-top: -40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
 
