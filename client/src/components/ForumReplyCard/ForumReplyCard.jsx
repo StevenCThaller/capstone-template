@@ -41,7 +41,7 @@ const ForumReplyCard = ({ postDetails, setPostDetails, postID }) => {
                 onClick={() => handleDeleteReply(forumReply._id)}
                 style={{ width: '50px' }}
               >
-                <FontAwesomeIcon icon={faTrash} />
+                {/* <FontAwesomeIcon icon={faTrash} /> */}
               </button>
             )}
           </div>
