@@ -1,24 +1,39 @@
-import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import { DB_URL } from "./config/db.config";
-import { API_URL, PORT } from "./config/app.config";
+import { yellow, green, blue, red } from "chalk";
+import keys from "./config/keys";
 import router from "./routes";
+import fileupload from "express-fileupload"
 
-mongoose
-  .connect(DB_URL)
-  .then(() => console.log("[Database] Connection established."))
-  .catch((err) => console.log("[Database] Connection failed: ", err));
 
 const app = express();
+const path = require('path');
+
+mongoose
+  .connect(keys.db_uri)
+  .then(() => console.log(`${green("[Database]")} Connection established`))
+  .catch((error) =>
+    console.log(`${red("[Database]")} Connection failed:`, error)
+  );
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(API_URL, router);
+app.use("/",fileupload());
 
-app.listen(PORT, () =>
-  console.log(`[Server] Listening for requests at http://localhost:${PORT}`)
+app.use(keys.api_url, router);
+
+
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+
+app.listen(keys.port, () =>
+  console.log(
+    `${green("[Server]")} Server established! Send requests to ${yellow(
+      "http://localhost:"
+    )}${blue(keys.port)}`
+  )
 );
+
